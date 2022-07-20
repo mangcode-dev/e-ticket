@@ -1,138 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title><?php echo $page_title;?></title>
 
-		<meta name="description" content="User login page" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Nongnuch Garden Pattaya" />
+	<meta name="author" content="mangcode" />
+	<title><?php echo $page_title; ?></title>
 
-		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>bootstrap.min.css" />
-		<link rel="stylesheet" href="<?php echo base_url() . $asset_url; ?>font-awesome/4.5.0/css/font-awesome.min.css" />
+	<meta name="description" content="User login page" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-		<!-- text fonts -->
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>fonts.googleapis.com.css" />
-
-		<!-- ace styles -->
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
-
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>ace-skins.min.css" />
-
-		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="assets/css/ace-part2.min.css" />
-		<![endif]-->
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>ace-rtl.min.css" />
-
-		<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>jquery-ui.min.css" />
-
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-		<!--[if lte IE 8]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
-		<script src="<?php echo base_url() . $js_url; ?>ace-extra.min.js"></script>
-	</head>
-
-	<body class="no-skin">
-
-<?php echo $page_header;?>
-<?php echo $page_menu;?>
-
-
-
-<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-		<script src="<?php echo base_url() . $js_url; ?>jquery-2.1.4.min.js"></script>
-		<!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script> -->
-		<!-- <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
-		<script src="<?php echo base_url() . $js_url; ?>jquery-ui-1.11.4/jquery-ui.js"></script>
-		
-		<!-- <script src="<?php echo base_url() . $js_url; ?>jquery-ui.min.js"></script>
-
-
-		<!-- <script src="<?php echo base_url() . $js_url; ?>jquery-1.11.3.min.js"></script> -->
-
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="<?php echo base_url() . $asset_url; ?>fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $asset_url; ?>fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $asset_url; ?>fonts/font-awesome/v6/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $asset_url; ?>fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="<?php echo base_url() . $asset_url; ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $asset_url; ?>plugins/summernote/summernote.css" rel="stylesheet">
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() . $asset_url; ?>plugins/material/material.min.css">
+	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>material_style.css">
+	<link rel="stylesheet" href="<?php echo base_url() . $asset_url; ?>plugins/jquery-toast/dist/jquery.toast.min.css">
+	<!-- inbox style -->
+	<link href="<?php echo base_url() . $css_url; ?>pages/inbox.min.css" rel="stylesheet" type="text/css" />
+	<!-- Theme Styles -->
+	<link href="<?php echo base_url() . $css_url; ?>theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="<?php echo base_url() . $css_url; ?>plugins.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $css_url; ?>theme/light/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $css_url; ?>pages/formlayout.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $css_url; ?>responsive.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() . $css_url; ?>theme/light/theme-color.css" rel="stylesheet" type="text/css" />
 	
-		<!-- <![endif]-->
+	<!-- favicon -->
+	<link rel="shortcut icon" href="<?php echo base_url() . $asset_url; ?>img/favicon.ico" />
+</head>
 
-		<script src="<?php echo base_url() . $js_url; ?>bootstrap.min.js"></script>
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+	<div class="page-wrapper">
+		<?php echo $page_header; ?>
 
-		<script src="<?php echo base_url() . $js_url; ?>jquery.dataTables.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.dataTables.bootstrap.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>dataTables.buttons.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>buttons.flash.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>buttons.html5.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>buttons.print.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>buttons.colVis.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>dataTables.select.min.js"></script>
+		<!-- start color quick setting -->
+		<div class="settingSidebar">
+			<a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+			</a>
+			<div class="settingSidebar-body ps-container ps-theme-default">
+				<div class=" fade show active">
+					<div class="setting-panel-header">Setting Panel
+					</div>
+					<div class="quick-setting slimscroll-style">
+						<ul id="themecolors">
+							<li>
+								<p class="sidebarSettingTitle">Sidebar Color</p>
+							</li>
+							<li class="complete">
+								<div class="theme-color sidebar-theme">
+									<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="blue"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="indigo"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="cyan"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="green"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="red"><span class="head"></span><span class="cont"></span></a>
+								</div>
+							</li>
+							<li>
+								<p class="sidebarSettingTitle">Header Brand color</p>
+							</li>
+							<li class="theme-option">
+								<div class="theme-color logo-theme">
+									<a href="#" data-theme="logo-white"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-dark"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-blue"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-indigo"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-cyan"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-green"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="logo-red"><span class="head"></span><span class="cont"></span></a>
+								</div>
+							</li>
+							<li>
+								<p class="sidebarSettingTitle">Header color</p>
+							</li>
+							<li class="theme-option">
+								<div class="theme-color header-theme">
+									<a href="#" data-theme="header-white"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-dark"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-blue"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-indigo"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-cyan"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-green"><span class="head"></span><span class="cont"></span></a>
+									<a href="#" data-theme="header-red"><span class="head"></span><span class="cont"></span></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end color quick setting -->
 
-		
-
-<?php echo $page_content;?>
-<?php echo $page_footer;?>
-
-
-		<!-- page specific plugin scripts -->
-
-		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
-		<script src="<?php echo base_url() . $js_url; ?>fuelux.wizard.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.validate.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>additional-methods.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>bootbox.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.maskedinput.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>select2.min.js"></script>
-
-
-		<script src="<?php echo base_url() . $js_url; ?>jquery-ui.custom.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.ui.touch-punch.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.easypiechart.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.sparkline.index.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.flot.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.flot.pie.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>jquery.flot.resize.min.js"></script>
-
-
-
-		<!-- ace scripts -->
-		<script src="<?php echo base_url() . $js_url; ?>ace-elements.min.js"></script>
-		<script src="<?php echo base_url() . $js_url; ?>ace.min.js"></script>
-		
-
-
+		<!-- start page container -->
+		<div class="page-container">
+			<?php echo $page_menu; ?>
 			
+			<!-- start js include path -->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/jquery/jquery.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/popper/popper.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/jquery-blockui/jquery.blockui.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/feather/feather.min.js"></script>
+		
+		<!-- bootstrap -->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/sparkline/jquery.sparkline.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>pages/sparkline/sparkline-data.js"></script>
+		<!-- Common js-->
+		<script src="<?php echo base_url() . $js_url; ?>app.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>layout.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>theme-color.js"></script>
+		<!-- material -->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/material/material.min.js"></script>
+		<!--apex chart-->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/apexcharts/apexcharts.min.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>pages/chart/apex/home-data.js"></script>
+		<!-- summernote -->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/summernote/summernote.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>pages/summernote/summernote-data.js"></script>
+		<!-- end js include path -->
 
+			<?php echo $page_content; ?>
+		</div>
+		<!-- end page container -->
 
-		<!--[if IE]>
-		<script src="assets/js/jquery-1.11.3.min.js"></script>
-		<![endif]-->
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url() . $js_url; ?>jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
+		<?php echo $page_footer; ?>
 
 		
-	</body>
+
+
+	</div>
+</body>
+
 </html>

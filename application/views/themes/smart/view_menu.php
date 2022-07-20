@@ -1,173 +1,122 @@
-<!-- Left panel : Navigation area -->
-		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
-		<!-- <div class="no-skin"> -->
-		<aside id="left-panel">
-<!-- <div class="main-container ace-save-state" id="main-container"> -->
-		<!-- <div id="sidebar" class="sidebar responsive ace-save-state"> -->
-
-			<!-- User info -->
-		
-			<!-- end user info -->
-
-			<!-- NAVIGATION : This navigation is also responsive-->
-			<body class="no-skin">
-
-			<div class="main-container ace-save-state" id="main-container">
-			<script type="text/javascript">
-				try{ace.settings.loadState('main-container')}catch(e){}
-			</script>
-
-			<div id="sidebar" class="sidebar responsive ace-save-state display" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
-				</script>
-
-				<!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
-						</button>
-
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
-						</button>
-
-						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-users"></i>
-						</button>
-
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
-						</button>
+<!-- start sidebar menu -->
+<div class="sidebar-container">
+	<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+		<div id="remove-scroll" class="left-sidemenu">
+			<ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+				<li class="sidebar-toggler-wrapper hide">
+					<div class="sidebar-toggler">
+						<span></span>
 					</div>
-
-					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
-
-						<span class="btn btn-warning"></span>
-
-						<span class="btn btn-danger"></span>
+				</li>
+				<li class="sidebar-user-panel">
+					<div class="sidebar-user">
+						<div class="sidebar-user-picture">
+							<img alt="image" src="<?php echo base_url() ?>themes/smart/img/dp.jpg">
+						</div>
+						<div class="sidebar-user-details">
+							<div class="user-name">Sneha Patel</div>
+							<div class="user-role">Administrator</div>
+						</div>
 					</div>
-				</div> --><!-- /.sidebar-shortcuts -->
-			
-
-				<nav>
-
-				<ul class="nav nav-list" >
+				</li>
 
 
-					
+				<!-- <li class="nav-item start active open">
+					<a href="#" class="nav-link nav-toggle">
+						<i data-feather="airplay"></i>
+						<span class="title">Dashboard</span>
+						<span class="selected"></span>
+						<span class="arrow open"></span>
+					</a>
+					<ul class="sub-menu">
+						<li class="nav-item active">
+							<a href="index.html" class="nav-link ">
+								<span class="title">Dashboard 1</span>
+								<span class="selected"></span>
+							</a>
+						</li>
+						<li class="nav-item ">
+							<a href="dashboard2.html" class="nav-link ">
+								<span class="title">Dashboard 2</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="dashboard3.html" class="nav-link ">
+								<span class="title">Dashboard 3</span>
+							</a>
+						</li>
+					</ul>
+				</li> -->
 
-					<?php 
-					
-					$resMenu = $this->backoffice_model->ShowMenu($this->session->userdata('sessUsrId'));
+				<?php
 
-					if($this->router->fetch_method() == 'edit' || $this->router->fetch_method() == 'rule'){
+				$resMenu = $this->backoffice_model->ShowMenu($this->session->userdata('sessUsrId'));
 
-						$set_method = 'manage';
-					}else{
+				if ($this->router->fetch_method() == 'edit' || $this->router->fetch_method() == 'rule') {
+					$set_method = 'manage';
+				} else {
 
-						$set_method = $this->router->fetch_method();
-					}
-					 
-					$submenu_active = $this->router->fetch_class().'/'.$set_method;
+					$set_method = $this->router->fetch_method();
+				}
+				$submenu_active = $this->router->fetch_class() . '/' . $set_method;
 
+				foreach ($resMenu as $m) {
 
-					
-							
-					foreach($resMenu as $m){	
-						// var_dump($m);
-						// $str_sactive = '';
-						$str_sactive = '';
-						foreach ($m['sub_menu'] as $sme) {
-							// echo $sme['method']."<br>";
+					$str_sactive = '';
+					foreach ($m['sub_menu'] as $sme) {
 
-							if($sme['method'] == $submenu_active){
-										$str_sactive = 'class="active open"';
-										echo '<li '.$str_sactive.'>';
-									}else{
-									}
+						if ($sme['method'] == $submenu_active) {
+							$str_sactive = 'class="nav-item start active open"';
+							// echo '<li ' . $str_sactive . '>';
+						} else {
+							$str_sactive = 'class="nav-item"';
 						}
-						
+					}
 
-						echo '<li '.$str_sactive.'>';
-						echo '<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-fw '.$m['icon_menu'].'"></i> <span class="menu-text">'.$m['g_name'].' </span>';
+					// var_dump($submenu_active);
+					// exit;
 
-						echo '<b class="arrow fa fa-angle-down"></b></a>';
+					echo '<li '.$str_sactive.'>';
+					echo '<a href="#" class="nav-link nav-toggle"><i class="fa '.$m['icon_menu'].'"></i> <span class="title">'.$m['g_name'].' </span> <span class="arrow"></span></a>';
+										
+					echo '<ul class="sub-menu">';
 
-						?>
-						<b class="arrow"></b>
+					foreach($m['sub_menu'] as $sm){
 
-						<?php
+						if($sm['method'] == $submenu_active){
 
-							echo '<ul class="submenu">';
+							$str_active_sub = 'class="nav-item active"';
+						}else{
 
-								foreach($m['sub_menu'] as $sm){
-									// echo base_url().$sm['link'];
-									if($sm['method'] == $submenu_active){
+							$str_active_sub = 'class="nav-item"';
+						}
 
-										$str_active = 'class="active"';
-									}else{
+						echo '<li '.$str_active_sub.'>';
+						echo '<a href="'.base_url().$sm['link'].'" class="nav-link "><span class="title">'.$sm['name'].'</span></a> </li>';
 
-										$str_active = '';
-									}
-
-
-									echo '<li '.$str_active.'><a href="'.base_url().$sm['link'].'"><i class="menu-icon fa fa-caret-right"></i>'.$sm['name'].' 
-											</a></li>';
-
-								}
-
-							?>
-
-
-							<?php
-
-							echo '</ul>';
-
-						echo '</li>';
-						//echo '</ul>';
-						// $x=0;
 					}
 
 					?>
 
 
+					<?php
 
-				</ul><!-- /.nav-list -->
-
-				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				</div>
+					echo '</ul>';
 
 
+					echo '</li>';
+
+				}
+
+				?>
 
 
-			
 
-			<!-- <span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
-			</span> -->
 
-		
-		<!-- END NAVIGATION -->
+
+
+			</ul>
 		</div>
-		</div>
-
-			<!-- <div class="main-content">
-		 <div class="main-container-inner">
-			 	
-			 		
-			 </div>
-			 </div> -->
-
-
-		</body>
-		<!-- </div> -->
-		<!-- </div> -->
-</nav>
-		</aside>
-
-		
+	</div>
+</div>
+<!-- end sidebar menu -->
