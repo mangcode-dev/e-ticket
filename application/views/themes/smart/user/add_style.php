@@ -1,0 +1,1 @@
+<link href="<?=base_url()?>themes/smart/plugins/datatables/plugins/bootstrap/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />

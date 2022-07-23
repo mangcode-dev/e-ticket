@@ -35,6 +35,8 @@ class Login extends CI_Controller
 
 	public function Account()
 	{
+
+
 			$data['str_validate'] = '';
 		$data['img_path'] = $this->img_path;
 
@@ -42,8 +44,7 @@ class Login extends CI_Controller
 if(	$this->backoffice_model->checksession()){
 		if ($action == 'login') {
 
-			// 	echo 'test';
-			// exit;
+
 
 
 
@@ -61,7 +62,7 @@ if(	$this->backoffice_model->checksession()){
 
 			if ($usrData['action'] != 'err') {
 
-				$arrData = array('sessUsr' => $usrData['username'], 'sessUsrId' => $usrData['su_id'], 'sessGroup' => $usrData['sug_id'], 'sessLastacc' => $usrData['last_access'], 'loggedIn' => "OK");
+				$arrData = array('sessUsr' => $usrData['username'], 'sessUsrId' => $usrData['su_id'], 'sessGroup' => $usrData['sug_id'], 'sessLastacc' => $usrData['last_access'],'password_pofile' => base64_decode($pwd), 'loggedIn' => "OK");
 
 				$this->session->set_userdata($arrData);
 				redirect('login');
@@ -97,7 +98,5 @@ if(	$this->backoffice_model->checksession()){
 		}else{
 			redirect('Manage/home');
 		}
-
-		echo "asdasda";
 	}
 }

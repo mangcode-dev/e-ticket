@@ -29,7 +29,7 @@ class Manage extends CI_Controller {
 
 	public function index(){
 		if ($this->backoffice_model->checksession()){
-		  redirect('Login/login');
+		  redirect('Login/account');
 		}else {
 			redirect('Manage/home');
 		}
@@ -37,7 +37,7 @@ class Manage extends CI_Controller {
 
 	public function Home(){
 			if ($this->backoffice_model->checksession()){
-					redirect('Login/login');
+					redirect('Login/account');
 			}else {
 				$data['str_validate'] = '';
 				$data['img_path'] = $this->img_path;

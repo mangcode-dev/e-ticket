@@ -37,6 +37,7 @@
 @media screen and (max-width: 765px) and (min-width: 445px){
 .container {
     width: 445px !important;
+    img
 }
 .signin-box{
     padding-left: 0px;
@@ -54,7 +55,7 @@
 }
 .set_background{
 	display: flex;
-    background-image: url(<?php echo base_url(); ?>themes/smart/img/back_login.jpg);
+    background-image: url(<?php echo base_url(); ?>themes/smart/img/test_background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -65,6 +66,9 @@
     justify-content: center;
     align-items: center;
 }
+.img_circle {
+    border-radius: 10%;
+}
 </style>
 
 <body>
@@ -73,14 +77,15 @@
 <div class="set_background">
 <section class="sign-in">
 			<div class="container row" style="opacity: 0.9;">
-				<div class="signin-box">
+				<div class="">
 					<div class="signin-image">
 						<!-- <figure><img src="<?php echo base_url(); ?>/themes/smart/img/pages/signin.jpg" alt="sing up image"></figure> -->
 						<!-- <a href="sign_up.html" class="signup-image-link">Create an account</a> -->
 					</div>
 					<div class="signin-form">
-            <img src="<?php echo base_url(); ?>themes/smart/img/logo_login.jpg" alt="">
-						<h2 class="form-title">Login</h2>
+              <center><img src="<?php echo base_url(); ?>themes/smart/img/name_sys.png"></center>
+            <!-- <center><img class="img_circle" src="<?php echo base_url(); ?>themes/smart/img/logo_login.png" alt="" ></center> -->
+					<!-- <center>	<h2 class="form-title">Login</h2></center> -->
 						<!--  -->
 
 						<?php echo form_open("Login/account", array('id'=>'login-form'));?>
@@ -95,16 +100,15 @@
 									<input name="txt_pwd" id="txt_pwd" type="password" placeholder="Password"
 										class="form-control input-height" /> </div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
 								<label for="remember-me" class="label-agree-term"><span><span></span></span>Remember
 									me</label>
-							</div>
+							</div> -->
 							<div class="form-group form-button">
-								<button class="btn btn-round btn-primary" name="signin" id="signin">Login</button>
-								<input type="hidden" name="action" value="<?php echo base64_encode('login');?>"  />
-
+								<center><button class="btn btn-round btn-primary" name="signin" id="signin">Login</button></center>
 							</div>
+              <input type="hidden" name="action" value="<?php echo base64_encode('login');?>"  />
 						<?php echo form_close();?>
 						<div class="social-login">
 							<!-- <span class="social-label">Or login with</span> -->

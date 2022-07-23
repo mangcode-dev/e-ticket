@@ -25,6 +25,10 @@
 	<link rel="stylesheet" href="<?php echo base_url() . $asset_url; ?>plugins/material/material.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>material_style.css">
 	<link rel="stylesheet" href="<?php echo base_url() . $asset_url; ?>plugins/jquery-toast/dist/jquery.toast.min.css">
+	<!-- Data Tables -->
+	<link href="<?php echo base_url() . $asset_url; ?>plugins/datatables/plugins/bootstrap/dataTables.bootstrap5.min.css" rel="stylesheet"
+		type="text/css" />
+	<link href="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<!-- inbox style -->
 	<link href="<?php echo base_url() . $css_url; ?>pages/inbox.min.css" rel="stylesheet" type="text/css" />
 	<!-- Theme Styles -->
@@ -127,6 +131,17 @@
 		<!--apex chart-->
 		<script src="<?php echo base_url() . $asset_url; ?>plugins/apexcharts/apexcharts.min.js"></script>
 		<script src="<?php echo base_url() . $js_url; ?>pages/chart/apex/home-data.js"></script>
+		<!-- Data Table -->
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/plugins/bootstrap/dataTables.bootstrap5.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/dataTables.buttons.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/buttons.flash.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/jszip.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/pdfmake.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/vfs_fonts.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/buttons.html5.min.js"></script>
+		<script src="<?php echo base_url() . $asset_url; ?>plugins/datatables/export/buttons.print.min.js"></script>
+		<script src="<?php echo base_url() . $js_url; ?>pages/table/table_data.js"></script>
 		<!-- summernote -->
 		<script src="<?php echo base_url() . $asset_url; ?>plugins/summernote/summernote.js"></script>
 		<script src="<?php echo base_url() . $js_url; ?>pages/summernote/summernote-data.js"></script>

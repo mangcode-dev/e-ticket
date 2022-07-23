@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://www.mang-code.com/e-ticket/';
-
 /*
 |--------------------------------------------------------------------------
 | Index File

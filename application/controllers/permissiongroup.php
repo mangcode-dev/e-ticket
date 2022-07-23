@@ -60,6 +60,9 @@ class Permissiongroup extends CI_Controller {
 				
 				$data['perDataEdit'] = $this->backoffice_model->ShowPermissionGroup($pgid);
 				$data['frmEdit'] = TRUE;
+
+				// var_dump($data['perDataEdit']);
+				// exit;
 			
 			}else{ redirect('permissiongroup/manage'); }
 
@@ -69,7 +72,7 @@ class Permissiongroup extends CI_Controller {
 	
 		$setTitle = strtoupper($this->router->fetch_method().' '.$this->router->fetch_class());	
 		
-		$this->template->write('page_title', 'VAS Quotation | '.$setTitle.'');
+		$this->template->write('page_title', 'E-TICKET | '.$setTitle.'');
 		$this->template->write_view('page_header', 'themes/'. $this->theme .'/view_header.php', $data);
 		$this->template->write_view('page_menu', 'themes/'. $this->theme .'/view_menu.php');
 		$this->template->write_view('page_content', 'themes/'. $this->theme .'/view_managepermissiongroup.php', $data);
@@ -87,59 +90,29 @@ class Permissiongroup extends CI_Controller {
 
 		$action = base64_decode($this->input->post('action'));
 
+
 		if($action=='addPermissionGroup'){
 
 			$p['name'] = $this->input->post('txt_name');
 			$p['enable'] = trim($this->input->post('rad_status'));
 
-			$this->load->library('form_validation');	
-			$this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />', '</div>');				
 			
-			$this->form_validation->set_rules('txt_name', 'Permission name', 'trim|required');
-			$this->form_validation->set_rules("rad_status", "", "trim");
-						
-			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาทำการตรวจสอบด้วยค่ะ');  
-			$this->form_validation->set_message('is_natural_no_zero', 'กรุณาทำการตรวจสอบด้วยค่ะ %s');       																
-			
-			if($this->form_validation->run() == FALSE){
-				
-				$this->session->set_flashdata('msgError', validation_errors());
-				redirect('permissiongroup/manage');
-								
-			}else{# form_validation = TRUE
 
+			if($p['name']==''){
+				$this->session->set_flashdata('msg_error', ' alert_message("Please fill the data" , "Update error" , "#ff6849" , "error")');
+				redirect('Permissiongroup/manage');
+			}else{
 				$result = $this->backoffice_model->AddPermissionGroup($p['name'],$p['enable']);
 
 				if($result!=FALSE){
-					
-					$this->session->set_flashdata('msgResponse', '<div class="alert alert-success fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-check"></i> <strong>บันทึกข้อมูลเรียบร้อยค่ะ </strong><br />Success : Add data success.</div>');
-					redirect('permissiongroup/manage');
-					
+					$this->session->set_flashdata('msg_success', ' alert_message("Successfully" , "Update completed" , "#ff6849" , "success")');
+					redirect('Permissiongroup/manage');
 				}else{
-					
-
-					$this->session->set_flashdata('msgResponse','<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />เกิดข้อผิดพลาด ไม่สามารถบันทึกข้อมูลได้ค่ะ <br />Error : Add data not found.</div>');
+					$this->session->set_flashdata('msg_error', ' alert_message("Please Check" , "Update error" , "#ff6849" , "error")');
 					redirect('permissiongroup/manage');
-					
 				}
-
-
 			}
-
+			
 		}
 
 	}
@@ -161,59 +134,25 @@ class Permissiongroup extends CI_Controller {
 			$p['usr'] = trim($this->input->post('txt_name'));
 			$p['enable'] = $this->input->post('rad_status');
 
-			$this->load->library('form_validation');	
-			$this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />', '</div>');				
-			
-			$this->form_validation->set_rules('txt_name', 'Permission name', 'trim|required');
-			$this->form_validation->set_rules("rad_status", "", "trim");
-						
-			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาทำการตรวจสอบด้วยค่ะ');  
-			$this->form_validation->set_message('is_natural_no_zero', 'กรุณาทำการตรวจสอบด้วยค่ะ %s');        																
-			
-			if($this->form_validation->run() == FALSE){
+			if ($p['usr']=='') {
+
+				$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Update error" , "#ff6849" , "error")');
+				redirect('Permissiongroup/manage/'.$pgid);
+
+			} else {
 				
-				$this->session->set_flashdata('msgError', validation_errors());
-				redirect('permissiongroup/manage/'.$pgid);
-
-								
-			}else{# form_validation = TRUE
-
 				$result = $this->backoffice_model->EditPermissionGroup($p['key'],$p['usr'],$p['enable']);
 
-
 				if($result!=FALSE){
-
-					$this->session->set_flashdata('msgResponse', '<div class="alert alert-success fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-check"></i> <strong>บันทึกข้อมูลเรียบร้อยค่ะ </strong><br />Success : Save data success.</div>');
-					redirect('permissiongroup/manage/'.$pgid);
-
+					$this->session->set_flashdata('msg_success', ' alert_message("Successfully" , "Update completed" , "#ff6849" , "success")');
+					redirect('Permissiongroup/manage/'.$pgid);
 				}else{
-
-					$this->session->set_flashdata('msgResponse','<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />เกิดข้อผิดพลาด ไม่สามารถบันทึกข้อมูลได้ค่ะ <br />Error : Save data not found.</div>');
-					redirect('permissiongroup/manage');
+					$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Update error" , "#ff6849" , "error")');
+					redirect('Permissiongroup/manage');
 				}
-
-
-
 			}
 
 		}
-
-
-
 
 	}
 
@@ -224,22 +163,13 @@ class Permissiongroup extends CI_Controller {
 			
 		if($result!=FALSE){
 				
-			$this->session->set_flashdata('msgResponse', '<div class="alert alert-success fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-check"></i> <strong>ลบข้อมูลเรียบร้อยค่ะ </strong><br />Success : Delete data success.</div>');
-			redirect('permissiongroup/manage/');
+			$this->session->set_flashdata('msg_success', ' alert_message("Successfully" , "Delete completed" , "#ff6849" , "success")');
+			redirect('Permissiongroup/manage/');
 			
 		}else{
 			
-			$this->session->set_flashdata('msgResponse','<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />เกิดข้อผิดพลาด ไม่สามารถบันทึกข้อมูลได้ค่ะ <br />Error : Save data not found.</div>');
-			redirect('permissiongroup/manage');
+			$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Delete error" , "#ff6849" , "error")');
+			redirect('Permissiongroup/manage');
 			
 		}
 	}

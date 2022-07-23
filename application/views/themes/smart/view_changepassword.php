@@ -1,350 +1,102 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+	<div class="page-content">
+		<div class="page-bar">
+			<div class="page-title-breadcrumb">
+				<div class=" pull-left">
+					<div class="page-title">Change Password</div>
+				</div>
+				<ol class="breadcrumb page-breadcrumb pull-right">
+					<li><i class="fa fa-object-group"></i>&nbsp;<a class="parent-item" href="#">Settings</a>&nbsp;<i class="fa fa-angle-right"></i>
+					</li>
+					<!-- <li><a class="parent-item" href="">Forms</a>&nbsp;<i class="fa fa-angle-right"></i>
+					</li> -->
+					<li class="active">Change Password</li>
+				</ol>
+			</div>
+		</div>
+		<?php echo form_open('changepassword/account', array('id'=>'smart-form-register', 'class'=>'form-horizontal'));?>
+		<div class="row">
+			<div class="col-md-7 col-sm-12">
 
-<!-- #MAIN PANEL -->
-		<div id="main" role="main">
+					<div class="card card-box">
+						<div class="card-head"><header>Details</header></div>
+						<div class="card-body row">
+							<div >
 
-			<!-- RIBBON -->
-			<div id="ribbon">
+								<div
+									class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+									<input class="mdl-textfield__input" type="text" name="txt_usr"   value="<?php echo $this->session->userdata('sessUsr');?> "  class="width-100" disabled />
 
-				<?php 
-					$setHeadContent = strtoupper(str_replace('_', ' ', $this->router->fetch_method()));
-				?>
-				<!-- breadcrumb -->
-				<!-- <ol class="breadcrumb">					 -->
-					<!-- <li><?php echo $setHeadContent;?></li> -->
-				<!-- </ol> -->
-
-				<!-- <div class="breadcrumbs" id="breadcrumbs"> -->
-						
-
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-cog cog-icon"></i>
-								<a href="#">SETTINGS</a>
-							</li>
-
-							<li>
-								<a href="#"><?php echo $setHeadContent;?></a>
-							</li>
-							<!-- <li class="active">Form Elements</li> -->
-
-						</ul><!-- /.breadcrumb -->
-
-						<!-- <div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div> --><!-- /.nav-search -->
-					<!-- </div> -->
-
-					<div class="ace-settings-container" id="ace-settings-container">
-							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-								<i class="ace-icon fa fa-cog bigger-130"></i>
+									<!-- <input class="mdl-textfield__input" type="text" value="Jayesh"
+										id="txtFirstName" disabled> -->
+									<label class="mdl-textfield__label">Username</label>
+								</div>
 							</div>
+							<div>
+								<div
+									class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+									<input class="mdl-textfield__input" name="txt_oldpwd" type="password"
+									  value="<?php echo set_value('txt_oldpwd');?>">
+										<!-- <input data-rel="tooltip" type="password" name="txt_oldpwd" placeholder=2"Old Password" id="password" value="<?php echo set_value('txt_oldpwd'); ?>" title="Don't forget your old password" data-placement="bottom" class="width-100" /> -->
 
-							<div class="ace-settings-box clearfix" id="ace-settings-box">
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<div class="pull-left">
-											<select id="skin-colorpicker" class="hide">
-												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
-												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-											</select>
-										</div>
-										<span>&nbsp; Choose Skin</span>
-									</div>
+									<label class="mdl-textfield__label">Old Password</label>
+								</div>
+							</div>
+							<div >
+								<div
+									class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+									<input type="password" name="txt_newpwd"  value="<?php echo set_value('txt_newpwd'); ?>" class="mdl-textfield__input width-100"   />
 
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
-										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
-										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
-										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
-										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
-										<label class="lbl" for="ace-settings-add-container">
-											Inside
-											<b>.container</b>
-										</label>
-									</div>
-								</div><!-- /.pull-left -->
-
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" />
-										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" />
-										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" />
-										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-									</div>
-								</div><!-- /.pull-left -->
-							</div><!-- /.ace-settings-box -->
+									<label class="mdl-textfield__label">New Password</label>
+									<span class="mdl-textfield__error">Enter Valid Email Address!</span>
+								</div>
+							</div>
+							<div >
+								<div
+									class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+										<input type="password" name="txt_cfpwd"   value="<?php echo set_value('txt_cfpwd'); ?>" class="mdl-textfield__input width-100" />
+									<label class="mdl-textfield__label">Confirmed  Password</label>
+								</div>
+							</div>
+							<div class="col-lg-12 p-t-20 text-center">
+								<input type="hidden" name="action" value="<?php echo base64_encode('changepassword');?>"  />
+								<input type="submit"
+									class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary" value="Submit">
+								<input type="Reset"
+									class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-danger" value="Cancel">
+							</div>
 						</div>
-
-
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-					<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-					<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-					<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-				</span> -->
+					</div>
 
 			</div>
-			<!-- END RIBBON -->
-
-			<!-- #MAIN CONTENT -->
-
-				<p>&nbsp;</p>				
-				<!-- <div class="row" style="margin:0;padding:0;"> -->
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-						<?php if($strValid==FALSE){ echo validation_errors(); } ?>
-						<?php if ($this->session->flashdata('msgResponse') != ''){ echo $this->session->flashdata('msgResponse'); } ?>
-					</div>
-				<!-- </div> -->
-				
-				<!-- row -->
-				<div class="row" style="margin:0;padding:0;">
-					
-					<div class="col-sm-12 col-md-12 col-lg-6">
-
-						<!-- Widget ID (each widget will need unique ID)-->
-						<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false">
-							<!-- widget options:
-									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-									data-widget-colorbutton="false"	
-									data-widget-editbutton="false"
-									data-widget-togglebutton="false"
-									data-widget-deletebutton="false"
-									data-widget-fullscreenbutton="false"
-									data-widget-custombutton="false"
-									data-widget-collapsed="true" 
-									data-widget-sortable="false"
-									
-								-->
-							
-								<div class="page-header">
-									<h1>
-										CHANGE PASSWORD
-										<!-- <small>
-											<i class="ace-icon fa fa-angle-double-right"></i>
-											Common form elements and layouts
-										</small> -->
-									</h1>
-								</div>
-
-								<!-- widget div-->
-								<div>
-
-									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
-										
-									</div>
-									<!-- end widget edit box -->
-
-									<!-- widget content -->
-									<div class="widget-body no-padding">
-									
-					           		<?php echo form_open('changepassword/account', array('id'=>'smart-form-register', 'class'=>'form-horizontal'));?>	
-					           		<div class="row">
-									<div class="col-xs-12">
-										
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Username </label>
-
-												<!-- <div class="col-sm-9 "> -->
-														<div class="col-xs-10 col-sm-6">
-																	<span class="block input-icon input-icon-right">
-																		<input type="text" name="txt_usr" placeholder="Username" value="<?php echo $this->session->userdata('sessUsr');?>" style="background-color: #d7d7d7;" readonly class="width-100" />
-																		<i class="ace-icon fa fa-user"></i>
-																	</span>
-																</div>
-												<!-- </div> -->
-											</div>
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Old Password </label>
-
-												<!-- <div class="col-sm-9 "> -->
-														<div class="col-xs-10 col-sm-6">
-																	<span class="block input-icon input-icon-right">
-																		<input data-rel="tooltip" type="password" name="txt_oldpwd" placeholder="Old Password" id="password" value="<?php echo set_value('txt_oldpwd'); ?>" title="Don't forget your old password" data-placement="bottom" class="width-100" />
-																		<i class="ace-icon fa fa-lock"></i>
-																	</span>
-																</div>
-												<!-- </div> -->
-											</div>
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> New Password </label>
-
-												<!-- <div class="col-sm-9 "> -->
-														<div class="col-xs-10 col-sm-6">
-																	<span class="block input-icon input-icon-right">
-																		<input type="password" name="txt_newpwd" placeholder="New Password" id="password" value="<?php echo set_value('txt_newpwd'); ?>" title="Don't forget your new password" data-placement="bottom" class="width-100" />
-																		<i class="ace-icon fa fa-lock"></i>
-																	</span>
-																</div>
-												<!-- </div> -->
-											</div>
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Confirm Password </label>
-
-												<!-- <div class="col-sm-9 "> -->
-														<div class="col-xs-10 col-sm-6">
-																	<span class="block input-icon input-icon-right">
-																		<input type="password" name="txt_cfpwd" placeholder="Confirm Password" id="password" value="<?php echo set_value('txt_cfpwd'); ?>" title="Don't forget your confirm password" data-placement="bottom" class="width-100" />
-																		<i class="ace-icon fa fa-lock"></i>
-																	</span>
-																</div>
-												<!-- </div> -->
-											</div>
-
-
-
-
-										</div>
-										</div>
-										<div class="clearfix form-actions">
-										<div class="center">
-											
-
-												<button type="submit" class="btn btn-primary">
-												Change Password
-											</button>
-											<input type="hidden" name="action" value="<?php echo base64_encode('changepassword');?>"  />
-
-												<!-- &nbsp; &nbsp; &nbsp;
-												<button class="btn" type="reset">
-													<i class="ace-icon fa fa-undo bigger-110"></i>
-													Reset
-												</button> -->
-											</div>
-										</div>
-
-					           		<?php echo form_close();?>
-									</div>
-									<!-- end widget content -->
-
-								</div>
-								<!-- end widget div -->
-						</div>
-
-					</div>
-
-				</div>
-				<!-- end row -->	
-			
-			<!-- END #MAIN CONTENT -->
-
 		</div>
-		<!-- END #MAIN PANEL -->
 
-			
-		<!-- <script type="text/javascript">
-			
-			$(document).ready(function(){			
+	<?php echo form_close();?>
 
-				var $registerForm = $("#smart-form-register").validate({
-	
-					// Rules for form validation
-					rules : {
-						txt_usr : {
-							required : true,
-							minlength : 4,
-							maxlength : 16,
-						},
-						txt_email : {
-							required : true,
-							email : true
-						},
-						txt_pwd : {
-							minlength : 4,
-							maxlength : 16
-						},
-						
-						txt_fname : {
-							required : true
-						},
-						txt_lname : {
-							required : true
-						},
-						
-						
-					},
-		
-					// Messages for form validation
-					messages : {
-						login : {
-							required : 'Please enter your login'
-						},
-						email : {
-							required : 'Please enter your email address',
-							email : 'Please enter a VALID email address'
-						},
-						password : {
-							required : 'Please enter your password'
-						},
-						passwordConfirm : {
-							required : 'Please enter your password one more time',
-							equalTo : 'Please enter the same password as above'
-						},
-						firstname : {
-							required : 'Please select your first name'
-						},
-						lastname : {
-							required : 'Please select your last name'
-						},
-						gender : {
-							required : 'Please select your gender'
-						},
-						terms : {
-							required : 'You must agree with Terms and Conditions'
-						}
-					},
-		
-					// Do not change code below
-					errorPlacement : function(error, element) {
-						error.insertAfter(element.parent());
-					}
-				});
-
-
+	</div>
+</div>
+<!-- <script src="<?php //echo base_url()  ?>themes/smart/plugins/jquery/jquery.min.js"></script> -->
+<!-- bootstrap -->
+	<!-- <script src="<?php echo base_url() ?>themes/smart/plugins/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="<?php echo base_url() ?>themes/smart/plugins/jquery-toast/dist/jquery.toast.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>themes/smart/plugins/jquery-toast/dist/toast.js"></script> -->
+<script type="text/javascript">
+$( document ).ready(function() {
+function alert_message(heading , text , loaderBg , icon ){
+			 $.toast({
+				heading:heading,
+				text: text,
+				position: 'top-right',
+				loaderBg:loaderBg,
+				icon: icon,
+				hideAfter: 3000,
+				stack: 6
 			});
-
-		</script> -->
-
-		
+}
+<?php
+if ($str_validate == FALSE){ echo validation_errors(); }
+if ($this->session->flashdata('msgResponse') != ''){ echo $this->session->flashdata('msgResponse'); }
+?>
+});
+</script>

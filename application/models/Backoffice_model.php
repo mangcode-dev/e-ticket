@@ -19,7 +19,7 @@ class Backoffice_model extends CI_Model {
 			$result = $query->result_array();
 
 			if($result['0']['enable']!=0){
-
+				$this->update_user_lastAcess($result[0]["su_id"]);
 				return $result[0];
 
 			}else{
@@ -194,6 +194,31 @@ class Backoffice_model extends CI_Model {
          return false;
        }
     }
+
+
+	public function getCustomer(){
+
+		$sqlSel = "SELECT
+						*
+					FROM
+						customers AS cust
+					LEFT JOIN customers_groups AS custg
+					ON cust.cus_g_id = custg.cus_g_id
+					WHERE
+						cust.enable = '1'
+					AND cust.del_flag = '0';";
+		$query = $this->db->query($sqlSel);
+		$result = $query->result_array();
+
+		if($query->num_rows()!=0) {
+
+            return $result;
+        }else {
+
+            return FALSE;
+        }
+
+	}
 
 
 	public function addUser($p){
@@ -508,7 +533,7 @@ class Backoffice_model extends CI_Model {
 
 	public function EditUserGroup($key='',$name='',$enable='1'){
 
-		$sqlEdt = "UPDATE sys_user_groups SET name='{$name}', enable='{$enable}', date_created=NOW() WHERE sug_id='{$key}';";
+		$sqlEdt = "UPDATE sys_user_groups SET name='{$name}', enable='{$enable}', date_create=NOW() WHERE sug_id='{$key}';";
 		$excEdt = $this->db->query($sqlEdt);
 
 		if($excEdt){ return TRUE; }else{ return FALSE; }
@@ -556,7 +581,7 @@ class Backoffice_model extends CI_Model {
 
 			foreach($rule as $r){
 
-				$sqlIns = "INSERT INTO sys_users_groups_permissions SET sug_id='{$key}', spg_id='{$r}', date_created=NOW();";
+				$sqlIns = "INSERT INTO sys_users_groups_permissions SET sug_id='{$key}', spg_id='{$r}', date_create=NOW();";
 				$excIns = $this->db->query($sqlIns);
 
 				if($excIns){
@@ -624,19 +649,19 @@ class Backoffice_model extends CI_Model {
 		if($excDel){
 
 			$sqlSelPerDefault = "INSERT INTO sys_users_permissions
-			SELECT
-			NULL AS sup_id,
-			su.su_id,
-			sp.sp_id,
-			NOW()
-			FROM
-			sys_users_groups_permissions AS sugp
-			LEFT JOIN sys_user_groups AS sug ON sug.sug_id = sugp.sug_id
-			LEFT JOIN sys_users AS su ON su.sug_id = sug.sug_id
-			LEFT JOIN sys_permission_groups AS spg ON spg.spg_id = sugp.spg_id
-			LEFT JOIN sys_permissions AS sp ON sp.spg_id = spg.spg_id
-			WHERE sugp.sug_id='{$key}'
-			ORDER BY su.su_id ASC,sp.sp_id ASC";
+										SELECT
+										NULL AS sup_id,
+										su.su_id,
+										sp.sp_id,
+										NOW()
+										FROM
+										sys_users_groups_permissions AS sugp
+										LEFT JOIN sys_user_groups AS sug ON sug.sug_id = sugp.sug_id
+										LEFT JOIN sys_users AS su ON su.sug_id = sug.sug_id
+										LEFT JOIN sys_permission_groups AS spg ON spg.spg_id = sugp.spg_id
+										LEFT JOIN sys_permissions AS sp ON sp.spg_id = spg.spg_id
+										WHERE sugp.sug_id='{$key}'
+										ORDER BY su.su_id ASC,sp.sp_id ASC";
 			$excSelPerDefault = $this->db->query($sqlSelPerDefault);
 
 			if($excSelPerDefault){
@@ -654,7 +679,7 @@ class Backoffice_model extends CI_Model {
 
 	public function AddPermission($name='',$enable='1',$group, $cont){
 
-		$sqlIns = "INSERT INTO sys_permissions SET name='{$name}', controller='{$cont}',enable='{$enable}', spg_id='{$group}',date_created=NOW(), date_updated=NOW();";
+		$sqlIns = "INSERT INTO sys_permissions SET name='{$name}', controller='{$cont}',enable='{$enable}', spg_id='{$group}',date_create=NOW(), date_update=NOW();";
 		$excIns = $this->db->query($sqlIns);
 
 		if($excIns){ return TRUE; }else{ return FALSE; }
@@ -664,7 +689,7 @@ class Backoffice_model extends CI_Model {
 
 	public function EditPermission($key='',$name='',$enable='1',$group, $cont){
 
-		$sqlEdt = "UPDATE sys_permissions SET name='{$name}', controller='{$cont}', enable='{$enable}', spg_id='{$group}', date_updated=NOW() WHERE sp_id='{$key}';";
+		$sqlEdt = "UPDATE sys_permissions SET name='{$name}', controller='{$cont}', enable='{$enable}', spg_id='{$group}', date_update=NOW() WHERE sp_id='{$key}';";
 		$excEdt = $this->db->query($sqlEdt);
 
 		if($excEdt){ return TRUE; }else{ return FALSE; }
@@ -700,7 +725,7 @@ class Backoffice_model extends CI_Model {
 
 	public function AddPermissionGroup($name='',$enable='1'){
 
-		$sqlIns = "INSERT INTO sys_permission_groups SET name='{$name}', enable='{$enable}', date_created=NOW();";
+		$sqlIns = "INSERT INTO sys_permission_groups SET name='{$name}', enable='{$enable}', date_create=NOW();";
 		$excIns = $this->db->query($sqlIns);
 
 		if($excIns){ return TRUE; }else{ return FALSE; }
@@ -710,7 +735,7 @@ class Backoffice_model extends CI_Model {
 
 	public function EditPermissionGroup($key='',$name='',$enable='1'){
 
-		$sqlEdt = "UPDATE sys_permission_groups SET name='{$name}', enable='{$enable}', date_created=NOW() WHERE spg_id='{$key}';";
+		$sqlEdt = "UPDATE sys_permission_groups SET name='{$name}', enable='{$enable}', date_create=NOW() WHERE spg_id='{$key}';";
 		$excEdt = $this->db->query($sqlEdt);
 
 		if($excEdt){ return TRUE; }else{ return FALSE; }
@@ -749,7 +774,7 @@ class Backoffice_model extends CI_Model {
 				'lastname' => $p['lname'],
 				'gender' => $p['sex'],
 				'email' => $p['email'],
-				'date_updated' => date('Y-m-d H:i:s')
+				'date_update' => date('Y-m-d H:i:s')
 				);
 
 		$this->db->where('su_id',$key);
@@ -767,7 +792,6 @@ class Backoffice_model extends CI_Model {
         $query = $this->db->get('sys_users');
 
         if($query->num_rows==1){
-
             $data = array('password' => base64_encode(trim($p['newPwd'])),
 						'date_updated' => date('Y-m-d H:i:s')
 			);
@@ -788,6 +812,13 @@ class Backoffice_model extends CI_Model {
         }
     }
 
+	public function update_user_lastAcess($id){
+		$dateTime = date('Y-m-d H:i:s');  
+		$this->db->set('last_access', "'{$dateTime}'", FALSE); 
+		$this->db->where('sug_id', $id);
+		$query = $this->db->update('sys_users');
+		return $query; 
+	}
 
 
 	/*

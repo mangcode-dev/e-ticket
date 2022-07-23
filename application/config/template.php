@@ -69,7 +69,10 @@ $template['public']['regions'] = array(
   'page_header',
 	'page_menu',
   'page_content',
-	'page_footer'
+	'page_footer',
+  'page_style',
+  'page_script',
+  'page_modal'
 );
 $template['public']['parser'] = 'parser';
 $template['public']['parser_method'] = 'parse';

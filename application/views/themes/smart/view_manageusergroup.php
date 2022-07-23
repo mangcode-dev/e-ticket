@@ -45,8 +45,8 @@
 										<th>Status</th>
 										<th>Action</th> -->
 										<th style="text-align:center;">No</th>
-										<th data-class="expand"><i class="fa fa-fw fa-group text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-										<th>Staus</th>
+										<th data-class="expand"><i class="fa fa-object-group text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+										<th>Status</th>
 										<th data-hide="phone,tablet">Action</th>
 									</tr>
 								</thead>
@@ -70,8 +70,8 @@
 												<td><?php echo $usergroup_detail['name']; ?></td>
 												<td><?php echo '<span style="color:' . $txt_color . '">' . $txt_status . '</span>'; ?></td>
 												<td>
-													<button type="button" class='btn btn-success btn-xs' data-original-title='Edit' onclick="javascript:window.location='<?php echo base_url() . 'usergroup/manage/' . $usergroup_detail['sug_id']; ?>';"><i class='fa fa-pencil'></i></button>
-													<button type="button" class='btn btn-danger btn-xs' data-original-title='Delete' onclick="javascript:if(confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')){ window.location='<?php echo base_url() . 'usergroup/delete/' . $usergroup_detail['sug_id']; ?>'; }else{ return false; }"><i class='fa fa-trash-o'></i></button>
+													<button type="button" class='btn btn-success btn-xs' data-original-title='Edit' onclick="javascript:window.location='<?php echo base_url() . 'Usergroup/manage/' . $usergroup_detail['sug_id']; ?>';"><i class='fa fa-pencil'></i></button>
+													<button type="button" class='btn btn-danger btn-xs' data-original-title='Delete' onclick="javascript:if(confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')){ window.location='<?php echo base_url() . 'Usergroup/delete/' . $usergroup_detail['sug_id']; ?>'; }else{ return false; }"><i class='fa fa-trash-o'></i></button>
 												</td>
 											</tr>
 										<?php $i++;
@@ -126,7 +126,7 @@
 											</span> -->
 										<div class="form-group row">
 											<div class="input-group">
-												<span class="input-group-addon"><i class="fa fa-group"></i></span>
+												<span class="input-group-addon"><i class="fa fa-object-group"></i></span>
 
 												<input type="text" name="txt_name" placeholder="                  Enter Usergroup Name  " size="40">
 											</div>
@@ -142,14 +142,17 @@
 													<label for="optionsRadios1">
 														Enable
 													</label>
-												</div>
 
-												<div class="radio p-0">
+													&nbsp;&nbsp;&nbsp;
+
 													<input type="radio" name="rad_status" id="optionsRadios2" value="0">
 													<label for="optionsRadios2">
 														Disable
 													</label>
+
 												</div>
+
+												
 
 
 											</div>
@@ -213,9 +216,9 @@
 													<label for="optionsRadios1">
 														Enable
 													</label>
-												</div>
 
-												<div class="radio p-0">
+													&nbsp;&nbsp;&nbsp;
+
 													<input type="radio" name="rad_status" id="optionsRadios2" value="0" <?php if ($usrDataEdit['enable'] == '0') {
 																										echo 'checked="checked"';
 																									} else {
@@ -224,8 +227,10 @@
 													<label for="optionsRadios2">
 														Disable
 													</label>
+
 												</div>
 
+												
 
 											</div>
 										</div>
@@ -237,22 +242,24 @@
 
 										
 										<?php
+											$xx = 0;
 										foreach ($excPerG->result() as $pg) {
+											
 										?>
 											
 											<!-- checkbox -->
 											<div class="form-group">
 												<div class="checkbox checkbox-icon-black p-0">
-												<input name="chkRid[]" id="subscription" type="checkbox" value="<?php echo $pg->spg_id; ?>" <?php if (in_array($pg->spg_id, $excRule) === true) {
+												<input name="chkRid[]" id="subscription<?php echo $xx+1;?>" type="checkbox" value="<?php echo $pg->spg_id; ?>" <?php if (in_array($pg->spg_id, $excRule) === true) {
 																																				echo 'checked="checked"';
 																																			} ?> />
-													<label for="subscription">
+													<label for="subscription<?php echo $xx+1;?>">
 														<?php echo $pg->name; ?>
 													</label>
 												</div>
 											</div>																								
 
-										<?php } ?>
+										<?php $xx=$xx+1; } ?>
 									</div>
 									<div class="col-xs-1">
 									</div>

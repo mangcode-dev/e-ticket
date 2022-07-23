@@ -60,6 +60,8 @@
 				}
 				$submenu_active = $this->router->fetch_class() . '/' . $set_method;
 
+				
+
 				foreach ($resMenu as $m) {
 
 					$str_sactive = '';
@@ -68,6 +70,7 @@
 						if ($sme['method'] == $submenu_active) {
 							$str_sactive = 'class="nav-item start active open"';
 							// echo '<li ' . $str_sactive . '>';
+							break;
 						} else {
 							$str_sactive = 'class="nav-item"';
 						}

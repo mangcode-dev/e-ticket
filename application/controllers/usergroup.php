@@ -162,28 +162,18 @@ class Usergroup extends CI_Controller
 			$p['enable'] = $this->input->post('rad_status');
 			$p['saveapply'] = $this->input->post('btn_saveapply');
 
-			$this->load->library('form_validation');
-			$this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />', '</div>');
+			
+			if ($p['usr']=='') {
 
-			$this->form_validation->set_rules('txt_name', 'Usergroup name', 'trim|required');
-			$this->form_validation->set_rules("rad_status", "", "trim");
+				$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Update error" , "#ff6849" , "error")');
+				redirect('Usergroup/manage/' . $ugid);
 
-			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาทำการตรวจสอบด้วยค่ะ');
-
-			if ($this->form_validation->run() == FALSE) {
-
-				$this->session->set_flashdata('msgError', validation_errors());
-				redirect('usergroup/manage/' . $ugid);
 			} else { # form_validation = TRUE
 
 				$resultSaveapply = TRUE;
 				$resultEdit = $this->backoffice_model->EditUserGroup($p['key'], $p['usr'], $p['enable']);
 				$resultAddRule = $this->backoffice_model->AddRuleUserGroup($p['key'], $p['rule']);
+
 
 				if ($p['saveapply'] == 'T') {
 
@@ -193,21 +183,14 @@ class Usergroup extends CI_Controller
 
 				if ($resultEdit != FALSE && $resultAddRule != FALSE && $resultSaveapply != FALSE) {
 
-					$this->session->set_flashdata('msgResponse', '<div class="alert alert-success fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-check"></i> <strong>บันทึกข้อมูลเรียบร้อยค่ะ </strong><br />Success : Save data success.</div>');
-					redirect('usergroup/manage/' . $ugid);
+					$this->session->set_flashdata('msg_success', ' alert_message("Successfully" , "Update completed" , "#ff6849" , "success")');
+
+					redirect('Usergroup/manage/' . $ugid);
 				} else {
 
-					$this->session->set_flashdata('msgResponse', '<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />เกิดข้อผิดพลาด ไม่สามารถบันทึกข้อมูลได้ค่ะ <br />Error : Save data not found.</div>');
-					redirect('usergroup/manage');
+					$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Update error" , "#ff6849" , "error")');
+
+					redirect('Usergroup/manage');
 				}
 			}
 		}
@@ -219,22 +202,15 @@ class Usergroup extends CI_Controller
 		$result = $this->backoffice_model->DeleteUserGroup($ugid);
 
 		if ($result != FALSE) {
+			
+			$this->session->set_flashdata('msg_success', ' alert_message("Successfully" , "Delete completed" , "#ff6849" , "success")');
+			redirect('Usergroup/manage');
 
-			$this->session->set_flashdata('msgResponse', '<div class="alert alert-success fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-check"></i> <strong>ลบข้อมูลเรียบร้อยค่ะ </strong><br />Success : Delete data success.</div>');
-			redirect('usergroup/manage/');
 		} else {
 
-			$this->session->set_flashdata('msgResponse', '<div class="alert alert-danger fade in">
-								<button class="close" data-dismiss="alert">
-									×
-								</button>
-								<i class="fa-fw fa fa-times"></i>
-								<strong>Error!</strong><br />เกิดข้อผิดพลาด ไม่สามารถบันทึกข้อมูลได้ค่ะ <br />Error : Save data not found.</div>');
-			redirect('usergroup/manage');
+			$this->session->set_flashdata('msg_error', ' alert_message("Something wrong!" , "Delete error" , "#ff6849" , "error")');
+
+			redirect('Usergroup/manage');
 		}
 	}
 }

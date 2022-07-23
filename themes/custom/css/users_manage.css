@@ -1,0 +1,58 @@
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tbox{
+    max-width: 100%;
+    
+}
+.div--forgroup{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.input--group{
+    display: flex;
+    flex-wrap: wrap;
+}
+.jus--center{ justify-content: center; }
+.switchToggle input:checked + .aqua {
+    background-color: #7fc99e;
+}
+.switchToggle + span{
+    font-size: 12px;
+    font-weight: 700;
+    color: #7fc99e;    
+}
+.switchToggle + span:before{
+    content: attr(dis--status); 
+}
+.switchToggle.dis + span{
+    font-size: 12px;
+    font-weight: 700;
+    color: #ccc;    
+}
+table.dataTable>thead .sorting:before, table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:before, table.dataTable>thead .sorting_asc:after, table.dataTable>thead .sorting_desc:before, table.dataTable>thead .sorting_desc:after, table.dataTable>thead .sorting_asc_disabled:before, table.dataTable>thead .sorting_asc_disabled:after, table.dataTable>thead .sorting_desc_disabled:before, table.dataTable>thead .sorting_desc_disabled:after {
+    position: absolute;
+    bottom: 10px;
+    display: block;
+    opacity: .3;
+}
+table.table-bordered.dataTable thead tr:first-child th, table.table-bordered.dataTable thead tr:first-child td{
+    padding-left: 8px;    
+}
+.table-checkable tr > td:first-child,
+.table-checkable tr > th:first-child{
+    text-align: start;
+    padding-left: 8px;
+}
+
+.modal-open {
+    overflow-y: hidden !important;
+}
